@@ -31,3 +31,12 @@
 
 # "temporary" build files
 /target
+
+
+/build
+
+grails-wrapper.jar
+
+# oculto los archivos de gradle
+.gradle/**
+gradle/**
