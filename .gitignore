@@ -2,3 +2,6 @@
 #angular
 npm-debug.log
 
+.gradle
+build/
+gradle/
