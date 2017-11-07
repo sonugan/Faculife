@@ -7,7 +7,7 @@ class Docente {
     Date fechaNacimiento
 
     //un alumno puede estar inscripto en varias facultades de diferente universidad
-    static hasMany = [identificaciones: Identificacion]
+    //static hasMany = [identificaciones: Identificacion]
 
     static constraints = {
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60
