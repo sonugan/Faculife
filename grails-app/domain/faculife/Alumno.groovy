@@ -5,7 +5,7 @@ class Alumno {
     String apellidos
     int numeroDocumento
     Date fechaNacimiento
-    String padron //TODO: AGREGAR IDNETIFICADOR PARA MULTIPLES UNIVERSIDADES
+    String padron
 
     static constraints = {
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60

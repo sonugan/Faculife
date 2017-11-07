@@ -7,8 +7,7 @@ class Materia {
     //static belongsTo = [ departamento : Departamento ]
 
     Set cursos = []
-    Set correlativas = []
-    static hasMany = [cursos: Curso, correlativas: Materia]
+    static hasMany = [cursos: Curso]
 
     static constraints = {
         codigo unique: true, required: true, nullable: false, blank: false
