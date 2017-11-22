@@ -20,7 +20,12 @@ a:link, a:visited { color:#0594d7; text-decoration: none}
 a:hover { text-decoration:underline }
 a:hover,a:active { outline:none }
 
-a.more { display: inline-block; text-decoration: none; margin-top: 15px; height: 26px; line-height: 26px; padding-left: 26px; text-align: center; background: url(images/tooplate_more.png) center left no-repeat }
+a.more { display: inline-block;
+	text-decoration: none; margin-top: 15px;
+	height: 26px; line-height: 26px;
+	padding-left: 26px;
+	text-align: center;
+	background: url(images/tooplate_more.png) center left no-repeat }
 
 .float_right { float: right; }
 
@@ -152,10 +157,19 @@ ul.list_bullet li a:hover { color: #333 }
 	padding: 40px 10px;
 }
 
-a.sitetitle { display: block; float: left; font-size: 12px; margin: 45px 20px 0;
-	font-family: Georgia, "Times New Roman", Times, serif; width: 240px;
-	height: 60px; text-indent: -10000px;
-  background: url(images/logo_facu.png)  no-repeat top center
+a.sitetitle {
+    /* display: block; */
+    /* float: left; */
+    font-size: 12px;
+    /* margin: 45px 20px 0; */
+    font-family: Georgia, "Times New Roman", Times, serif;
+    width: 200px;
+    height: 150px;
+    text-indent: -10000px;
+    position: absolute;
+    top: -16px;
+    left: 31px;
+    background: url(images/logo-1.png) no-repeat top center;
 }
 
 #tooplate_menu {
