@@ -107,19 +107,20 @@ ul.list_bullet li a:hover { color: #333 }
 
 #tooplate_slider_wrapper {
 	width: 100%;
-	background: #fff url(images/tooplate_slider.png) repeat-x bottom
+	background: #fff url(images/tooplate_slider.png) repeat-x bottom;
+	height: 352px;
 }
 #tooplate_slider {
 	clear: both;
 	position: relative;
 	width: 980px;
 	height: 280px;
-	padding: 30px 0 90px;
+	padding: 0 0 90px;
 	margin: 0 auto;
 }
 #tooplate_slider .button_box {
 	position: absolute;
-	bottom: 10px;
+	bottom: -63px;
 	height: 41px;
 	width: 260px;
 	left: 0;
@@ -142,7 +143,7 @@ ul.list_bullet li a:hover { color: #333 }
 	background: url(images/tooplate_more_black.png)
 }
 
-#tooplate_main { clear: both; width: 980px; padding: 40px 10px 0; margin: 0 auto}
+#tooplate_main { clear: both;}
 #tooplate_content { width: 580px }
 #tooplate_sidebar { width: 260px }
 

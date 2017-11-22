@@ -5,7 +5,7 @@
  * Copyright 2011, Gilbert Pellegrom
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * March 2010
  */
 
@@ -15,8 +15,8 @@
 	background: #fff;
     width: 400px; /* Make sure your images are the same size */
     height: 260px; /* Make sure your images are the same size */
-} 
- 
+}
+
 /* The Nivo Slider styles */
 .nivoSlider {
 	position:relative;
@@ -46,7 +46,7 @@
 	display:block;
 	position:absolute;
 	z-index:5;
-	height:100%;
+
 }
 .nivo-box {
 	display:block;
@@ -84,7 +84,7 @@
 
 
 .theme-default .nivo-directionNav a {
-	position:absolute;	
+	position:absolute;
 	display:block;
 	width:28px;
 	height:94px;
@@ -108,7 +108,7 @@
 .theme-default .nivo-controlNav {
 	position:absolute;
 	right: 0px;
-	bottom:-75px;
+	bottom:-57px;
     margin-left:-40px; /* Tweak this to center bullets */
 	height: 35px;
 }
