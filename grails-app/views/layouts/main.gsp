@@ -11,7 +11,7 @@
 
   <asset:javascript src="jquery-1.6.3.js"/>
 
-  <asset:stylesheet src="application.css"/>
+  <!--asset:stylesheet src="application.css"/-->
 
   <asset:stylesheet src="tooplate_style.css"/>
 
@@ -178,7 +178,7 @@
           <div style="display:none;" class="nav_up" id="nav_up"></div>
       </div>    <!-- END of tooplate_main -->
 
-    <g:layoutBody/>
+    <!--g:layoutBody/-->
 
     <div class="footer" role="contentinfo"></div>
 
