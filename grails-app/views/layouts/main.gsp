@@ -73,7 +73,7 @@
           <br style="clear: left" />
       </div> <!-- end of tooplate_menu -->
   </div> <!-- END of header -->
-  <div id="tooplate_slider_wrapper">
+  <!--div id="tooplate_slider_wrapper"-->
       <div id="tooplate_slider">
       	<div class="slider-wrapper theme-default">
               <div id="slider" class="nivoSlider">
@@ -120,8 +120,8 @@
           </script>
       </div> <!-- END of slider -->
   </div>
-      <div class="container" id="tooplate_main">
-      	<div id="home_about">
+      <!--div class="container" id="tooplate_main"-->
+      	<!--div id="home_about">
           	<h1>Hi, this is Education  Template!</h1>
               <p>Education is free HTML CSS template by <a rel="nofollow" href="http://www.tooplate.com" target="_parent">Tooplate</a>. Vestibulum urna libero, <br />
               <a href="http://www.facebook.com/tooplate" target="_parent">fringilla</a> eu faucibus nec, fringilla eget elit.</p>
@@ -178,14 +178,52 @@
           <div style="display:none;" class="nav_up" id="nav_up"></div>
       </div>    <!-- END of tooplate_main -->
 
-    <!--g:layoutBody/-->
+    <g:layoutBody/>
 
-    <div class="footer" role="contentinfo"></div>
+    <div id="tooplate_footer_wrapper">
+    	<div id="tooplate_footer">
+        	<div class="col_4">
+            	<h4>Pages</h4>
+                <ul class="nobullet bottom_list">
+                	<li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
 
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
+            <div class="col_4">
+            	<h4>Our Partners</h4>
+                <ul class="nobullet bottom_list">
+                    <li><a href="#">Website Designs</a></li>
+                    <li><a href="#">Digital Blog</a></li>
+                    <li><a href="#">Image Gallery</a></li>
+                    <li><a href="#">HTML Web Templates</a></li>
+                    <li><a href="#">Preminum Themes</a></li>
+                </ul>
+            </div>
+
+             <div class="col_4">
+            	<h4>About</h4>
+                <p> Praesent eu neque lectus, ut congue purus. Donec pellentesque, erat vitae tempus volutpat, augue diam pulvinar orci.</p>
+                <a href="#" class="more">More</a>
+            </div>
+            <div class="col_4 no_margin_right">
+            	<h4>Twitter</h4>
+                <p>"Lorem ipsum dolor sit amet consectetur adipiscing elit <a href="#">#Donec</a> ante nibh sagittis ut lobortis a, posuere vel sem"</p>
+                <a href="#">Follow me on Twitter</a>
+            </div>
+            <div class="clear"></div>
+    	</div> <!-- END of tooplate_footer -->
+    </div> <!-- END of tooplate_footer_wrapper -->
+
+    <div id="tooplate_copyright_wrapper">
+        <div id="tooplate_copyright">
+            Copyright © 2048 Your Company Name
+
+        </div>
     </div>
-
 
 
 
