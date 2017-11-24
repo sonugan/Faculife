@@ -7,73 +7,52 @@
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 </head>
 <body>
-    <content tag="nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-                <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-                <li><a href="#">App version:
-                    <g:meta name="info.app.version"/></a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Grails version:
-                    <g:meta name="info.app.grailsVersion"/></a>
-                </li>
-                <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-                <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-                <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-                <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-                <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                    <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
-                </g:each>
-            </ul>
-        </li>
-    </content>
-
-    <div class="svg" role="presentation">
-        <div class="grails-logo-container">
-            <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
-        </div>
-    </div>
-
-    <div id="content" role="main">
-        <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
-
-            <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-            </p>
-
-            <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
-                <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
-                </ul>
+  <div id="tooplate_slider_wrapper">
+    <div id="tooplate_slider">
+      <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+                <asset:image src="/slider/bloque1.png" height="280px"alt="" title="#caption1" />
+                <asset:image src="/slider/02.jpg" alt="" title="#caption2"  />
+                <asset:image src="/slider/03.jpg" alt="" title="#caption3" />
             </div>
-        </section>
-    </div>
+            <div id="caption1" class="nivo-html-caption">
+              <h1>Nunca dejes de anotarte!</h1>
+                <p>
+                  No dejes de anotarte en las materias más dificiles por falta de horarias, revisalos acá!
+                </p>
+            </div>
+            <div id="caption2" class="nivo-html-caption">
+                <h1>Calificá a los cursos</h1>
+                <p>
+                  Cargale una calificación a tus cursos realizados para ayudarnos entre todos.
+                </p>
+            </div>
+            <div id="caption3" class="nivo-html-caption">
+                <h1>Analiza tu calendario</h1>
+                <p>Te ayudamos a recomendarte cursos!</p>
+            </div>
+        </div>
+        <div class="button_box">
+          <a href="#" class="button blue">Sign Up</a>
+            <a href="#" class="button black">Learn More</a>
+        </div>
 
+        <asset:javascript src="jquery-1.6.3.min.js" />
+
+        <asset:javascript src="jquery.nivo.slider.pack.js" />
+
+            <script type="text/javascript">
+              $(window).load(function() {
+                  $('#slider').nivoSlider({
+            effect: 'fade',
+            controlNav: true, // 1,2,3... navigation
+                  directionNav: false,
+            animSpeed: 800, // Slide transition speed
+                pauseTime: 6000, // How long each slide will show
+            });
+              });
+            </script>
+        </div> <!-- END of slider -->
+  </div>
 </body>
 </html>
