@@ -51,7 +51,7 @@
       <div id="tooplate_menu" class="ddsmoothmenu">
           <ul>
               <li><a href="index.html" class="selected">Home</a></li>
-              <li><a href="blog.html">Blog</a>
+              <li><g:link controller="Alumno">Alumnos</g:link></a>
                   <ul>
                       <li><a href="blog.html">Category One</a></li>
                       <li><a href="blog.html">Category Two</a></li>
