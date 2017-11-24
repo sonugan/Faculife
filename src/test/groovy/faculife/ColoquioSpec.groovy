@@ -15,4 +15,12 @@ class ColoquioSpec extends Specification {
     def cleanup() {
     }
 
+    def 'crer coloquio valido'() {
+        when:
+            Coloquio unColoquio = new Coloquio(description: 'integrales')
+            unColoquio.save()
+        then:
+            Coloquio.count() == 1
+    }
+
 }
