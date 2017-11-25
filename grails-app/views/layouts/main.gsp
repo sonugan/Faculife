@@ -42,13 +42,14 @@
 
 
   <g:layoutHead/>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 
 
+
   <div id="tooplate_header">
-      <a href="index.html" class="sitetitle">Education Template</a>
+      <a href="${createLink(uri: '/')}" class="sitetitle">Education Template</a>
       <div id="tooplate_menu" class="ddsmoothmenu">
           <ul>
               <li><a href="index.html" class="selected">Home</a></li>
@@ -183,7 +184,7 @@
 
     <div id="tooplate_copyright_wrapper">
         <div id="tooplate_copyright">
-            Copyright © 2048 Your Company Name
+            Copyright © 2017 AGR Company
 
         </div>
     </div>
