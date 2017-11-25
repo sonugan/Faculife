@@ -116,7 +116,9 @@
 	display:block;
 	width: 54px;
 	height: 35px;
-	background: url(../images/tooplate_slider_control.png);
+	
+	background:  url(../images/tooplate_slider_control.png);
+
 	text-align: center;
 	line-height: 35px;
 	border:0;

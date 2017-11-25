@@ -42,6 +42,7 @@
 
 
   <g:layoutHead/>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 
@@ -53,7 +54,11 @@
               <li><a href="index.html" class="selected">Home</a></li>
               <li><g:link controller="Alumno">Alumnos</g:link></a>
                   <ul>
-                      <li><a href="blog.html">Category One</a></li>
+                      <li>
+                        <g:link controller="Alumno" action="planificar">
+                          Planificar cursada
+                        </g:link>
+                      </li>
                       <li><a href="blog.html">Category Two</a></li>
                       <li><a href="blog.html">Category Three</a></li>
                       <li><a href="blog.html">Category Four</a></li>
