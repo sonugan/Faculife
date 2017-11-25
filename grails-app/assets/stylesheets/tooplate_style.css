@@ -335,10 +335,10 @@ background: url(../images/caption_background.png) repeat;
 
 
 /* Css de edicion */
-#create-alumno{
+#create-alumno, #edit-alumno{
 	margin-top: 20px;
 }
 
-.form-create-alumno fieldset div{
+.form-alumno fieldset div{
 	margin-bottom: 10px;
 }

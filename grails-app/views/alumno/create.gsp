@@ -26,7 +26,7 @@
                   </g:eachError>
               </ul>
               </g:hasErrors>
-              <g:form class="form-create-alumno"resource="${this.alumno}" method="POST">
+              <g:form class="form-alumno"resource="${this.alumno}" method="POST">
                   <fieldset class="form-group">
                       <f:all  bean="alumno" wrapper="someWrapper"/>
                   </fieldset>
@@ -40,7 +40,7 @@
         <script type="text/javascript">
         $( document ).ready(function() {
           console.log( "ready!" );
-          $( ".form-create-alumno" ).find( "input" ).addClass( "form-control" );
+          $( ".form-alumno" ).find( "input" ).addClass( "form-control" );
         });
         </script>
     </body>
