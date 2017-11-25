@@ -150,7 +150,8 @@ ul.list_bullet li a:hover { color: #333 }
 #tooplate_footer_wrapper {
 	clear: both;
 	width: 100%;
-	background: #fff;
+	background: #fafafa;
+	margin-top: 100px;
 }
 #tooplate_footer {
 	width: 980px;
@@ -330,3 +331,14 @@ background: url(../images/caption_background.png) repeat;
 .pagging ul li { margin: 0; padding: 0; display: inline }
 .pagging ul li a { float: left; display: block; color: #333; text-decoration: none; margin-right: 5px; padding: 5px 10px; background: #e2e5e7}
 .pagging ul li a:hover { color: #fff; background: #1b1d1f}
+
+
+
+/* Css de edicion */
+#create-alumno{
+	margin-top: 20px;
+}
+
+.form-create-alumno fieldset div{
+	margin-bottom: 10px;
+}
