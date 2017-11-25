@@ -9,7 +9,6 @@ class AlumnoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def planificar() {
-        flash.message = "Bienvenido a tu planificacion"
 		    render(view:"planificar")
 	  }
 

@@ -23,7 +23,7 @@
 	margin-right: 1px;
 	padding: 0 30px;
 	font-size: 15px;
-	color: #fff;	
+	color: #fff;
 	text-align: center;
 	text-decoration: none;
 	font-weight: 400;
@@ -36,7 +36,10 @@ display: inline-block;
 .ddsmoothmenu ul li.last { background: none }
 
 .ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
-	background: url(../images/tooplate_menu_hover.png) repeat-x top
+	
+
+	background:  url(../images/tooplate_menu_hover.png);
+
 }
 
 /*1st sub level menu*/

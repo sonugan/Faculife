@@ -16,9 +16,9 @@
                 <asset:image src="/slider/03.jpg" alt="" title="#caption3" />
             </div>
             <div id="caption1" class="nivo-html-caption">
-              <h1>Nunca dejes de anotarte!</h1>
+              <h1>Planifica tu cursada</h1>
                 <p>
-                  No dejes de anotarte en las materias más dificiles por falta de horarias, revisalos acá!
+                  No dejes de anotarte en las materias más dificiles por falta de horarios.
                 </p>
             </div>
             <div id="caption2" class="nivo-html-caption">
