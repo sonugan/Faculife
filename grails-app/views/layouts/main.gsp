@@ -52,7 +52,7 @@
       <a href="${createLink(uri: '/')}" class="sitetitle">Education Template</a>
       <div id="tooplate_menu" class="ddsmoothmenu">
           <ul>
-              <li><a href="index.html" class="selected">Home</a></li>
+              <li><a href="${createLink(uri: '/')}" class="selected">Home</a></li>
               <li><g:link controller="Alumno">Alumnos</g:link></a>
                   <ul>
                       <li>
