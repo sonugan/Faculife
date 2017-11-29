@@ -5,7 +5,7 @@ class Docente {
     String nombres
     String apellidos
     Date fechaNacimiento
-
+    static belongsTo = Curso
     static constraints = {
         legajo required: true, nullable: false, unique: true
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60

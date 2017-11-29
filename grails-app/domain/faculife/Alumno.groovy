@@ -7,7 +7,9 @@ class Alumno {
     Date fechaNacimiento
     String padron
 
-    static hasMany = [materias: Materia]
+    static belongsTo = GrupoDeEstudios
+
+    static hasMany = [cursos: Curso]
 
     static constraints = {
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60
@@ -21,5 +23,5 @@ class Alumno {
       materias.add(unaMateria)
     }
 
-    
+
 }
