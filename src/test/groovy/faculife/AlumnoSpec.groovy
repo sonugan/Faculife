@@ -15,6 +15,22 @@ class AlumnoSpec extends HibernateSpec {
     def cleanup() {
     }
 
+    def 'asignarle carrera a un alumno'() {
+        when:
+            Alumno alumno = new Alumno(padron: '123456'
+                , nombres: 'Gaston'
+                , apellidos: 'Perez'
+                , numeroDocumento: '34114043'
+                , fechaNacimiento: new Date())
+            Carrera unaCarrera = new Carrera(nombre: 'sistemas'
+                , codigo: '8989')
+
+            alumno.asignarCarrera(unaCarrera)
+            alumno.save()
+        then:
+            alumno.getCarrera() == 'sistemas'
+    }
+
     def 'crear alumno valido'() {
         when:
             Alumno alumno = new Alumno(padron: '123456'
