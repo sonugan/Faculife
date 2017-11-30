@@ -6,6 +6,7 @@ class Alumno {
     int numeroDocumento
     Date fechaNacimiento
     String padron
+    //Carrera carrera
 
     static belongsTo = GrupoDeEstudios
 
@@ -23,5 +24,10 @@ class Alumno {
       materias.add(unaMateria)
     }
 
+    def asignarCarrera(Carrera unaCarrera) {
+      carrera.add(unaCarrera)
+    }
 
+    //static String getCarrera()
+    //  return carrera.
 }

@@ -15,4 +15,14 @@ class CarreraSpec extends Specification {
     def cleanup() {
     }
 
+    def 'crear carrera con valores validos'() {
+      when:
+          Carrera unaCarrera = new Carrera(nombre: 'sistemas'
+          , codigo: '8989')
+          unaCarrera.save()
+
+      then:
+          unaCarrera.nombre == 'sistemas'
+          unaCarrera.codigo == '8989'
+    }
 }
