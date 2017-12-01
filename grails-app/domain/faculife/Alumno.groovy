@@ -6,6 +6,7 @@ class Alumno {
     int numeroDocumento
     Date fechaNacimiento
     String padron
+    Carrera carrera
 
     //puede pertenecer a varios grupos de estudio??
     static belongsTo = GrupoDeEstudios
@@ -20,4 +21,15 @@ class Alumno {
         padron required: true, nullable: false, blank: false
     }
 
+    Alumno() {
+      this.carrera = null
+    }
+
+    def asignarCarrera(Carrera unaCarrera) {
+      this.carrera = unaCarrera
+    }
+
+    def getCarrera() {
+      return this.carrera.name
+    }
 }
