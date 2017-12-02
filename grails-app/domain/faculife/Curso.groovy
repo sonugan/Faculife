@@ -1,10 +1,14 @@
 package faculife
 
 class Curso {
-    static belongsTo = Alumno
 
-    static hasMany = [alumnos: Alumno]
+    static belongsTo = [Cuatrimestre,Alumno]
+
+    static hasMany = [alumnos: Alumno, docentes: Docente]
+
+    static hasOne = [materia: Materia]
 
     static constraints = {
+      materia unique: true
     }
 }
