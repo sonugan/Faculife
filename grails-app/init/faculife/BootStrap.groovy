@@ -24,57 +24,23 @@ class BootStrap {
       prelat.save(flush: true, failOnError: true)
 
       Alumno gaston = new Alumno(nombres: "Gaston Nicolas", apellidos: "Perez", numeroDocumento: 1, fechaNacimiento: new Date(), padron: "123")
-      gaston.addToCarreras(carrera)
+      gaston.addToCarreras(carrera) // cargo al alumno a una carrera.
       gaston.save(flush: true, failOnError: true)
 
       Curso cursoPrelat = new Curso()
 
       cursoPrelat.addToDocentes(prelat )
       cursoPrelat.addToDocentes(prelatJr)
-      cursoPrelat.addToAlumnos(gaston)
+      cursoPrelat.addToAlumnos(gaston)// cargo al alumno a un curso.
 
-      //cursoPrelat.save(flush: true, failOnError: true)
+      // falta pasarle un enum en vez de un entero en numero
+      Cuatrimestre cuatri = new Cuatrimestre(anio:2018, numero:1)
+      cuatri.addToCursos(cursoPrelat)
+      cuatri.save(flush: true, failOnError: true)
+
 
       algebra2.addToCursos(cursoPrelat)
       algebra2.save(flush: true, failOnError: true)
-      /*Curso cursoPrelat = new Curso()
-
-      Docente docente = new Docente(legajo: 3, nombres: "Prelat",
-                                    apellidos: "Prelat",
-                                    fechaNacimiento: new Date(1980, 2, 3))
-      cursoPrelat.addToDocentes(docente)
-
-      algebra2.addToCursos(cursoPrelat)
-
-      algebra2.save(flush: true, failOnError: true)
-
-      algebra2.addToCursos(cursoPrelat)
-
-      algebra2.save(flush: true, failOnError: true)
-
-      // no se como pasar un enum. Lo harcodie a un entero
-      Cuatrimestre cuatrimestre =  new Cuatrimestre(anio:2018,numero: 1)
-
-      cuatrimestre.addToCursos(cursoPrelat)
-
-      cuatrimestre.save(flush: true, failOnError: true)
-
-
-      // Inscripcion de un alumno a una carrera.
-      Alumno alumno = new Alumno(padron: '123456',
-                          nombres: 'Gaston',
-                          apellidos: 'Perez',
-                          numeroDocumento: '34114043',
-                          fechaNacimiento: new Date())
-
-      alumno.addToCarreras(carrera)
-
-      // Inscripcion de un alumno a un curso.
-      alumno.addToCarreras(cursoPrelat)
-      alumno.save(flush: true, failOnError: true)
-
-
-      //*/
 
     }
     def destroy = {
