@@ -10,4 +10,6 @@ cache:
 before_install:
  - chmod +x gradlew
 script: 
+ - gradle wrapper
+ - gradle assemble
  - gradle check
