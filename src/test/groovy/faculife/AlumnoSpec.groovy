@@ -12,6 +12,10 @@ class AlumnoSpec extends HibernateSpec {
     Alumno alumnoValido
     Carrera industrial
     Carrera sistemas
+    Materia seminario1
+    Materia algoritmos1
+    Curso seminario12017
+    Curso algoritmos12017
     def setup() {
         alumnoValido = new Alumno(
               padron: '123456'
@@ -25,6 +29,16 @@ class AlumnoSpec extends HibernateSpec {
 
         sistemas = new Carrera(codigo: "9", nombre: "Sistemas")
         sistemas.save()
+
+        Cuatrimestre primerCuatrimestre2017 = new Cuatrimestre(anio: 2017, numero: 1)
+        primerCuatrimestre2017.save()
+        seminario1 = new Materia(codigo: "7115", nombre: "Seminario 1")
+        seminario12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: seminario1)
+        seminario12017.save()
+
+        algoritmos1 = new Materia(codigo: "7101", nombre: "Algoritmos 1")
+        algoritmos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: algoritmos1)
+        algoritmos12017.save()
     }
 
     def cleanup() {
@@ -227,5 +241,35 @@ class AlumnoSpec extends HibernateSpec {
             !alumnoValido.hasErrors()
             alumnoValido.carreras.size() == 1
             alumnoValido.carreras.first().codigo == sistemas.codigo
+    }
+    
+    def 'alumno se inscribe en un curso'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCurso(seminario12017)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.getCursosQueEstoyCursando().size() == 1
+    }
+
+    def 'alumno se inscribe en dos cursos distintos'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCurso(seminario12017)
+            alumnoValido.inscribirseEnCurso(algoritmos12017)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.getCursosQueEstoyCursando().size() == 2
+    }
+
+    def 'alumno se inscribe en dos veces al mismo curso'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCurso(seminario12017)
+            alumnoValido.inscribirseEnCurso(seminario12017)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.getCursosQueEstoyCursando().size() == 1
+            alumnoValido.errors.getFieldErrors('cursos')
     }
 }
