@@ -9,7 +9,22 @@ import grails.test.hibernate.HibernateSpec
 @TestFor(Alumno)
 class AlumnoSpec extends HibernateSpec {
 
+    Alumno alumnoValido
+    Carrera industrial
+    Carrera sistemas
     def setup() {
+        alumnoValido = new Alumno(
+              padron: '123456'
+            , nombres: 'Gaston'
+            , apellidos: 'Perez'
+            , numeroDocumento: '34114043'
+            , fechaNacimiento: new Date())
+
+        industrial = new Carrera(codigo: "2", nombre: "Industrial")
+        industrial.save()
+
+        sistemas = new Carrera(codigo: "9", nombre: "Sistemas")
+        sistemas.save()
     }
 
     def cleanup() {
@@ -117,5 +132,85 @@ class AlumnoSpec extends HibernateSpec {
             alumno.hasErrors()
             alumno.errors.getFieldErrors('nombres')
             Alumno.count() == 0
+    }
+
+    def 'alumno se inscribe en una carrera'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(industrial)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.carreras.size() == 1
+    }
+
+    def 'alumno se inscribe en dos carreras'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(industrial)
+            alumnoValido.inscribirseEnCarrera(sistemas)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.carreras.size() == 2
+    }
+
+    def 'alumno se inscribe en dos veces a la misma carrera'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(industrial)
+            alumnoValido.inscribirseEnCarrera(industrial)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('carreras')
+            alumnoValido.carreras.size() == 1
+    }
+
+    def 'alumno se inscribe en una carrera nula'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(null)
+        then:
+            alumnoValido.hasErrors()
+    }
+
+    def 'alumno se desinscribe de una carrera'() {
+        when:
+            alumnoValido.save()
+            
+            alumnoValido.inscribirseEnCarrera(industrial)
+            alumnoValido.desinscribirseDeCarrera(industrial)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.carreras.size() == 0
+    }
+
+    def 'alumno se desinscribe de una carrera en la que no esta inscripto'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.desinscribirseDeCarrera(industrial)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('carreras')
+    }
+
+    def 'alumno se desinscribe dos veces de una carrera'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(industrial)
+            alumnoValido.desinscribirseDeCarrera(industrial)
+            alumnoValido.desinscribirseDeCarrera(industrial)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('carreras')
+            alumnoValido.carreras.size() == 0
+    }
+
+    def 'alumno se desinscribe de una carrera nula'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.desinscribirseDeCarrera(null)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('carreras')
+            alumnoValido.carreras.size() == 0
     }
 }
