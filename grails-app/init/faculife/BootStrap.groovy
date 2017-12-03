@@ -15,6 +15,20 @@ class BootStrap {
 
       carrera.addToMaterias(algebra2)
 
+      algebra2.save(flush: true, failOnError: true)
+
+      Docente prelat = new Docente(legajo: 1, nombres: "Prelat", apellidos: "Prelat", fechaNacimiento: new Date());
+      prelat.save(flush: true, failOnError: true)
+      
+      Docente prelatJr = new Docente(legajo: 2, nombres: "prelatJr", apellidos: "Prelat", fechaNacimiento: new Date());
+      prelat.save(flush: true, failOnError: true)
+      
+      Alumno gaston = new Alumno(nombres: "Gaston Nicolas", apellidos: "Perez", numeroDocumento: 1, fechaNacimiento: new Date(), padron: "123")
+      gaston.save(flush: true, failOnError: true)
+      
+      Curso cursoPrelat = new Curso(materia: algebra2, docentes: [prelat, prelatJr], alumnos: [gaston])
+      cursoPrelat.save(flush: true, failOnError: true)
+
       /*Curso cursoPrelat = new Curso()
 
       Docente docente = new Docente(legajo: 3, nombres: "Prelat",
