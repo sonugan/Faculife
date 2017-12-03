@@ -29,6 +29,8 @@ class Alumno {
             }else{
                 addToCarreras(carrera)   
             }
+        }else{
+            errors.rejectValue("carreras", "La carrera a inscribirse no puede ser nula")
         }
     }
 
@@ -40,6 +42,8 @@ class Alumno {
             }else{
                 errors.rejectValue("carreras", "No se encuentra inscripto en la carrera")
             }
+        }else{
+            errors.rejectValue("carreras", "La carrera a desinscribirse no puede ser nula")
         }
     }
 

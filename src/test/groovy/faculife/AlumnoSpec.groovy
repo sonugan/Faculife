@@ -141,6 +141,7 @@ class AlumnoSpec extends HibernateSpec {
         then:
             !alumnoValido.hasErrors()
             alumnoValido.carreras.size() == 1
+            alumnoValido.carreras.first().codigo == industrial.codigo
     }
 
     def 'alumno se inscribe en dos carreras'() {
@@ -170,6 +171,8 @@ class AlumnoSpec extends HibernateSpec {
             alumnoValido.inscribirseEnCarrera(null)
         then:
             alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('carreras')
+            alumnoValido.carreras == null
     }
 
     def 'alumno se desinscribe de una carrera'() {
@@ -211,6 +214,18 @@ class AlumnoSpec extends HibernateSpec {
         then:
             alumnoValido.hasErrors()
             alumnoValido.errors.getFieldErrors('carreras')
-            alumnoValido.carreras.size() == 0
+            alumnoValido.carreras == null
+    }
+
+    def 'alumno se inscribe en dos carreras y se desinscribe de una'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCarrera(industrial)
+            alumnoValido.inscribirseEnCarrera(sistemas)
+            alumnoValido.desinscribirseDeCarrera(industrial)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.carreras.size() == 1
+            alumnoValido.carreras.first().codigo == sistemas.codigo
     }
 }
