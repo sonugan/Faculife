@@ -8,7 +8,7 @@ cache:
   - $HOME/.gradle/wrapper/
   - $HOME/.m2
 before_install:
- - chmod +x gradlew
+ - sudo chmod +x gradlew
 script: 
  - gradle assemble
  - gradle check
