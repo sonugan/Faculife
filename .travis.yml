@@ -9,5 +9,6 @@ cache:
     $HOME/.m2
 
 script: 
+ - chmod +x ./gradlew build connectedCheck
  - gradle assemble
  - gradle check
