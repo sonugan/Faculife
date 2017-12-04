@@ -272,4 +272,13 @@ class AlumnoSpec extends HibernateSpec {
             alumnoValido.getCursosQueEstoyCursando().size() == 1
             alumnoValido.errors.getFieldErrors('cursos')
     }
+
+    def 'alumno se inscribe en curso nulo'() {
+        when:
+            alumnoValido.save()
+            alumnoValido.inscribirseEnCurso(null)
+        then:
+            alumnoValido.hasErrors()
+            alumnoValido.errors.getFieldErrors('cursos')
+    }
 }

@@ -48,11 +48,15 @@ class Alumno {
     }
 
     def inscribirseEnCurso(curso){
-        def yaEstoyInscripto = cursos.find { it.id == curso.id }
-        if(yaEstoyInscripto){
-            errors.rejectValue("cursos", "Solo puede inscribirse una vez a cada curso")
-        }else {
-            addToCursos(curso)
+        if(curso){
+            def yaEstoyInscripto = cursos.find { it.id == curso.id }
+            if(yaEstoyInscripto){
+                errors.rejectValue("cursos", "Solo puede inscribirse una vez a cada curso")
+            }else {
+                addToCursos(curso)
+            }
+        }else{
+            errors.rejectValue("cursos", "El curso a inscribirse no puede ser nulo")
         }
     }
 
