@@ -34,7 +34,7 @@ class BootStrap {
       cursoPrelat.addToAlumnos(gaston)// cargo al alumno a un curso.
 
       // falta pasarle un enum en vez de un entero en numero
-      Cuatrimestre cuatri = new Cuatrimestre(anio:2018, numero:1)
+      Cuatrimestre cuatri = new Cuatrimestre(anio:2018, numero: Cuatrimestre.Numero.PRIMERO)
       cuatri.addToCursos(cursoPrelat)
       cuatri.save(flush: true, failOnError: true)
 

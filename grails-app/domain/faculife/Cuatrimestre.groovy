@@ -1,11 +1,11 @@
 package faculife
 
 class Cuatrimestre {
-    //enum Numero {PRIMERO, SEGUNDO}
+    enum Numero {PRIMERO, SEGUNDO}
 
     int anio
     //Numero numero
-    int numero
+    Numero numero
 
     static hasMany = [cursos: Curso]
 

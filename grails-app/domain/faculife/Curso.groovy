@@ -4,7 +4,7 @@ class Curso {
 
     static belongsTo = [Cuatrimestre,Alumno,Materia]
 
-    static hasMany = [alumnos: Alumno, docentes: Docente]
+    static hasMany = [alumnos: Alumno, docentes: Docente, horarios: Horario]
 
     static constraints = {
       

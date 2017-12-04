@@ -7,7 +7,7 @@ class Alumno {
     Date fechaNacimiento
     String padron
 
-    static hasMany = [cursos: Curso, grupoDeEstudios: GrupoDeEstudios, carreras: Carrera]
+    static hasMany = [cursos: Curso, grupoDeEstudios: GrupoDeEstudios, carreras: Carrera, notas: Nota]
 
     static constraints = {
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60
@@ -15,5 +15,9 @@ class Alumno {
         numeroDocumento required: true
         fechaNacimiento required: true
         padron required: true, nullable: false, blank: false
+    }
+
+    def getMateriasAprobadas(){
+        return notas.find { it.nota >= 4 }
     }
 }
