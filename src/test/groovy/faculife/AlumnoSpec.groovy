@@ -63,20 +63,20 @@ class AlumnoSpec extends HibernateSpec {
         when:
             //cargo la carrera solo con 3 materias
             //para simplificar
-            sistemas.add(algoritmos1)
-            sistemas.add(seminario1)
-            sistemas.add(datos)
+            sistemas.addToMaterias(algoritmos1)
+            sistemas.addToMaterias(seminario1)
+            sistemas.addToMaterias(datos)
 
             //me inscribo en sistemas
             alumnoValido.inscribirseEnCarrera(sistemas)
 
             //le cargo notas al alumno
-            alumnoValido.add(notaDatos)
-            alumnoValido.add(notaAlgo1)
-            alumnoValido.add(notaSeminario)
+            alumnoValido.addToNotas(notaDatos)
+            alumnoValido.addToNotas(notaAlgo1)
+            alumnoValido.addToNotas(notaSeminario)
         then:
             !alumnoValido.hasErrors()
-            alumnoValido.carreras.size() == alumnoValido.getMateriasAprobadas()
+            sistemas.materias.size() == alumnoValido.getMateriasAprobadas()
     }
 
     def 'crear alumno valido'() {

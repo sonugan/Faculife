@@ -33,4 +33,13 @@ class Alumno {
             errors.rejectValue("carreras", "La carrera a inscribirse no puede ser nula")
         }
     }
+
+    /*def terminoCarrera(unaCarrera) {
+    //recibo una carrera por parametro, la busco en la lista de
+    //de carreras(puede estudiar mas de una carrera)
+    //la busco por el nombre
+    //cuando la encuentro, accedo a su cantidad de materias y comparo
+        def miCarrera = buscarCarrera(unaCarrera)//implementar
+        return (getMateriasAprobadas() == miCarrera.materias.size())
+    }*/
 }
