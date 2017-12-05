@@ -19,6 +19,7 @@ class CursoSpec extends Specification {
     Horario turnoTarde
     Horario turnoManiana
     Alumno gaston
+    Alumno alex
     Cuatrimestre primerCuatrimestre2018
 
     def setup() {
@@ -29,6 +30,13 @@ class CursoSpec extends Specification {
       , numeroDocumento: '34114043'
       , fechaNacimiento: new Date())
       gaston.save()
+      alex = new Alumno(
+        padron: '95428'
+      , nombres: 'Alexander'
+      , apellidos: 'Villa'
+      , numeroDocumento: '36114043'
+      , fechaNacimiento: new Date())
+      alex.save()
 
       proba = new Materia(codigo: "81.04", nombre: "Probabilidad y estadistica B")
       proba.save()
@@ -42,6 +50,8 @@ class CursoSpec extends Specification {
       proba_2018_1b.save()
       proba_2018_1a = new Curso(cuatrimestre: primerCuatrimestre2018, materia: proba)
       proba_2018_1a.save()
+
+      proba_2018_1a.addToAlumnos
 
       jemina = new Docente(legajo: 9898, nombres: "Jemina"
       , apellidos: "Garcia", fechaNacimiento: new Date())
@@ -68,29 +78,56 @@ class CursoSpec extends Specification {
     def cleanup() {
     }
 
-    def "curso queda habilitado, porque cumple con los requisitos"() {
+    //HACER UN TEST PARA QUE UN ALUMNO NO ESTE INSCRIPTO EN VARIOS CURSOS
+
+    def "materia tiene al menos un curso habilitado, por ende la materiia se puede cursar"() {
+        when:
+            proba_2018_1c.addToAlumnos(gaston)
+            proba_2018_1c.addToDocentes(jemina)
+            proba_2018_1c.addToHorarios(turnoNoche)
+
+            proba_2018_1a.addToAlumnos(alex)
+            proba_2018_1a.addToDocentes(grynberg)
+            proba_2018_1a.addToHorarios(turnoManiana)
+
+            proba.addToCursos(proba_2018_1a)
+            proba.addToCursos(proba_2018_1c)
+
+            assert proba.estaHabilitada() == true
+            //falta implementar metodo
+    }
+
+    def "materia no esta habilitada porque no tiene cursos disponibles"() {
+            proba_2018_1c.addToHorario(turnoNoche)
+            //EN REALIDAD UN CURSO PUEDE TENER DOCENTES Y Horario
+            //pero si no tiene alumnos deberia estar disponible igual
+            //tener docente y un horario deben ser condiciones fundamentales
+            //no importa los alumnos
+            //-para que un alumno se inscriba a un curso, este debe tener
+            //un docente y un horario(precondiciones)
+
+            proba.addToCursos(proba_2018_1c)
+
+            assert proba.estaHabilitada() = false
+    }
+
+    def "curso queda disponible, porque cumple con los requisitos"() {
         when:
             proba_2018_1c.addToAlumnos(gaston)
             proba_2018_1c.addToDocentes(jemina)
             proba_2018_1c.addToHorarios(turnoNoche)
 
         then:
-            assert proba_2018_1c.estaHabilitado() == true
+            assert proba_2018_1c.estaDisponible() == true
     }
 
-    def "curso no se puede habilitar porque no cumple con los requisitos minimos"() {
-        assert proba_2018_1c.estaHabilitado() == false
+    def "curso no esta disponible porque no cumple con los requisitos minimos"() {
+        assert proba_2018_1c.estaDisponible() == false
 
         proba_2018_1c.addToAlumnos(gaston)
-        assert proba_2018_1c.estaHabilitado() == false
+        assert proba_2018_1c.estaDisponible() == false
 
         proba_2018_1c.addToDocentes(jemina)
-        assert proba_2018_1c.estaHabilitado() == false
+        assert proba_2018_1c.estaDisponible() == false
     }
-
-    def "materia tiene al menos un curso habilitado, por ende la materiia se puede cursar"() {
-        when:
-
-    }
-
 }

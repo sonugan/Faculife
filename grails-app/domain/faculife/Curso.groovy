@@ -10,7 +10,7 @@ class Curso {
 
     }
 
-    def estaHabilitado() {
+    def estaDisponible() {
       //hip: se toma como validos los datos que se guardaron
       return (alumno.size() && docentes.size() && horarios.size())
     }
