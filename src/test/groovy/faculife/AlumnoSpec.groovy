@@ -14,8 +14,13 @@ class AlumnoSpec extends HibernateSpec {
     Carrera sistemas
     Materia seminario1
     Materia algoritmos1
+    Materia datos
     Curso seminario12017
     Curso algoritmos12017
+    Curso datos12017
+    Nota notaDatos
+    Nota notaAlgo1
+    Nota notaSeminario
 
     def setup() {
         alumnoValido = new Alumno(
@@ -33,6 +38,7 @@ class AlumnoSpec extends HibernateSpec {
 
         Cuatrimestre primerCuatrimestre2017 = new Cuatrimestre(anio: 2017, numero: 1)
         primerCuatrimestre2017.save()
+
         seminario1 = new Materia(codigo: "7115", nombre: "Seminario 1")
         seminario12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: seminario1)
         seminario12017.save()
@@ -40,14 +46,38 @@ class AlumnoSpec extends HibernateSpec {
         algoritmos1 = new Materia(codigo: "7101", nombre: "Algoritmos 1")
         algoritmos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: algoritmos1)
         algoritmos12017.save()
+
+        datos = new Materia(codigo: "7503", nombre: "Organizacion de datos")
+        datos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: datos)
+        datos12017.save()
+
+        notaDatos = new Nota(nota: 6)
+        notaSeminario = new Nota(nota: 7)
+        notaAlgo1 = new Nota(nota: 8)
     }
 
     def cleanup() {
     }
 
-    /*def 'alumno termino la carrera'() {
+    def 'alumno termino la carrera'() {
+        when:
+            //cargo la carrera solo con 3 materias
+            //para simplificar
+            sistemas.add(algoritmos1)
+            sistemas.add(seminario1)
+            sistemas.add(datos)
 
-    }*/
+            //me inscribo en sistemas
+            alumnoValido.inscribirseEnCarrera(sistemas)
+
+            //le cargo notas al alumno
+            alumnoValido.add(notaDatos)
+            alumnoValido.add(notaAlgo1)
+            alumnoValido.add(notaSeminario)
+        then:
+            !alumnoValido.hasErrors()
+            alumnoValido.carreras.size() == alumnoValido.getMateriasAprobadas()
+    }
 
     def 'crear alumno valido'() {
         when:
