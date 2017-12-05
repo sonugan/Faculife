@@ -9,11 +9,45 @@ import grails.test.hibernate.HibernateSpec
 @TestFor(Alumno)
 class AlumnoSpec extends HibernateSpec {
 
+    Alumno alumnoValido
+    Carrera industrial
+    Carrera sistemas
+    Materia seminario1
+    Materia algoritmos1
+    Curso seminario12017
+    Curso algoritmos12017
+
     def setup() {
+        alumnoValido = new Alumno(
+          padron: '123456'
+        , nombres: 'Gaston'
+        , apellidos: 'Perez'
+        , numeroDocumento: '34114043'
+        , fechaNacimiento: new Date())
+
+        industrial = new Carrera(codigo: "2", nombre: "Industrial")
+        industrial.save()
+
+        sistemas = new Carrera(codigo: "9", nombre: "Sistemas")
+        sistemas.save()
+
+        Cuatrimestre primerCuatrimestre2017 = new Cuatrimestre(anio: 2017, numero: 1)
+        primerCuatrimestre2017.save()
+        seminario1 = new Materia(codigo: "7115", nombre: "Seminario 1")
+        seminario12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: seminario1)
+        seminario12017.save()
+
+        algoritmos1 = new Materia(codigo: "7101", nombre: "Algoritmos 1")
+        algoritmos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: algoritmos1)
+        algoritmos12017.save()
     }
 
     def cleanup() {
     }
+
+    /*def 'alumno termino la carrera'() {
+
+    }*/
 
     def 'crear alumno valido'() {
         when:
