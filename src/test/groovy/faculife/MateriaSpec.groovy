@@ -29,14 +29,15 @@ class MateriaSpec extends Specification {
       analisis2 = new Materia(codigo: "81.01", nombre: "Analisis Matematico II")
       algebra2 = new Materia(codigo: "81.02", nombre: "Algebra II")
       proba = new Materia(codigo: "81.04", nombre: "Probabilidad y estadistica B")
+      proba.save()
+      analisis2.save()
+      algebra2.save()
 
       analisis2_a = new Curso(cuatrimestre: primerCuatri2017, materia: analisis2)
       algebra2_b = new Curso(cuatrimestre: primerCuatri2017, materia: algebra2)
 
-      proba.save()
-      //analisis2.save()
-      //algebra2.save()
-
+      analisis2_a.save()
+      algebra2_b.save()
     }
 
     def cleanup() {
