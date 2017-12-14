@@ -7,7 +7,8 @@ class Alumno {
     Date fechaNacimiento
     String padron
 
-    static hasMany = [cursos: Curso, grupoDeEstudios: GrupoDeEstudios, carreras: Carrera, notas: Nota]
+    static hasMany = [cursos: Curso, grupoDeEstudios: GrupoDeEstudios,
+                      carreras: Carrera, notas: Nota]
 
     static constraints = {
         nombres required: true, nullable: false, blank: false, minSize: 3, maxSize: 60
@@ -42,4 +43,23 @@ class Alumno {
         def miCarrera = buscarCarrera(unaCarrera)//implementar
         return (getMateriasAprobadas() == miCarrera.materias.size())
     }*/
+
+    def puedeCursar(materia) {
+      materia.correlativas.each { unaMateria ->
+          if (!aproboMateria(unaMateria)) return false
+      }
+      return true
+    }
+
+    def aproboMateria(materia) {
+      def codigo = materia.codigo
+
+      def notaMateria = notas.find { nota -> nota.materia.codigo == codigo}
+
+      if (notaMateria) {
+        return (notaMateria >= 4)
+      } else {
+        return false
+      }
+    }
 }

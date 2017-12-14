@@ -57,7 +57,7 @@ class CursoSpec extends Specification {
       , apellidos: "Garcia", fechaNacimiento: new Date())
       jemina.save()
       grynberg = new Docente(legajo: 9899, nombres: "Sebastian"
-      , apellidos: "Gryunberg", fechaNacimiento: new Date())
+      , apellidos: "Grynberg", fechaNacimiento: new Date())
       grynberg.save()
       acero = new Docente(legajo: 9897, nombres: "Fernando"
       , apellidos: "Acero", fechaNacimiento: new Date())
@@ -80,7 +80,7 @@ class CursoSpec extends Specification {
 
     //HACER UN TEST PARA QUE UN ALUMNO NO ESTE INSCRIPTO EN VARIOS CURSOS
 
-    def "materia tiene al menos un curso habilitado, por ende la materiia se puede cursar"() {
+    /*def "materia tiene al menos un curso habilitado, por ende la materiia se puede cursar"() {
         when:
             proba_2018_1c.addToAlumnos(gaston)
             proba_2018_1c.addToDocentes(jemina)
@@ -129,5 +129,5 @@ class CursoSpec extends Specification {
 
         proba_2018_1c.addToDocentes(jemina)
         assert proba_2018_1c.estaDisponible() == false
-    }
+    }*/
 }
