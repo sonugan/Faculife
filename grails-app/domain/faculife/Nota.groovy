@@ -1,7 +1,8 @@
 package faculife
 
 class Nota {
-    static belongsTo = [Materia, Alumno]
+    Materia materia
+    static belongsTo = [Alumno]
     int nota
 
     static constraints = {

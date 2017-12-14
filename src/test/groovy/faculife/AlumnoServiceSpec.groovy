@@ -1,43 +1,53 @@
 package faculife
 
 import grails.test.mixin.TestFor
-import spock.lang.Specification
+import grails.test.hibernate.HibernateSpec
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(AlumnoService)
-class AlumnoServiceSpec extends Specification {
+class AlumnoServiceSpec extends HibernateSpec {
 
     Carrera carrera
     Alumno alumno
-    //Materia analisis1
+    Materia analisis1
     Materia algoritmos1
     def setup() {
-        // algoritmos1 = new Materia(codigo: '7115', nombre: 'Algoritmos')
-        // algoritmos1.save()
+        analisis1 = new Materia(codigo: '7112', nombre: 'Analisis')
+        analisis1.save()
+
+        algoritmos1 = new Materia(codigo: '7115', nombre: 'Algoritmos')
+        algoritmos1.save()
+
 
         Cuatrimestre cuatrimestre12017 = new Cuatrimestre(anio: 2017, numero: Cuatrimestre.Numero.PRIMERO)
         cuatrimestre12017.save()
 
-        // Curso analisis112017 = new Curso(cuatrimestre: cuatrimestre12017, materia: analisis1)
-        // analisis112017.save()
+        Curso analisis112017 = new Curso(cuatrimestre: cuatrimestre12017, materia: analisis1)
+        analisis112017.save()
 
-        // Curso algoritmos112017 = new Curso(cuatrimestre: cuatrimestre12017, materia: algoritmos1)
-        // algoritmos112017.save()
+        Curso algoritmos112017 = new Curso(cuatrimestre: cuatrimestre12017, materia: algoritmos1)
+        algoritmos112017.save()
 
-        // carrera = new Carrera(codigo: "9", nombre: "Sistemas")
-        // carrera.addToMaterias(analisis112017)
-        // carrera.addToMaterias(algoritmos112017)
-        // carrera.save()
+        carrera = new Carrera(codigo: "9", nombre: "Sistemas")
+        carrera.addToMaterias(analisis1)
+        carrera.addToMaterias(algoritmos1)
+        carrera.save()
 
-        // alumno = new Alumno(nombres: 'gaston'
-        //     , apellidos: 'Perez'
-        //     , numeroDocumento: '34114043'
-        //     , fechaNacimiento: new Date())
-        // alumno.save()
-        // alumno.aprobarMateria(analisis1)
-        
+        alumno = new Alumno(nombres: 'gaston'
+            , apellidos: 'Perez'
+            , numeroDocumento: '34114043'
+            , fechaNacimiento: new Date())
+
+        //alumno.aprobarMateria(algoritmos1, 5)
+        Nota nota = new Nota(materia: algoritmos1, nota: 4)
+        nota.save()
+        Nota nota1 = new Nota(materia: analisis1, nota: 5)
+        nota.save()
+        alumno.addToNotas(nota)
+        alumno.addToNotas(nota1)
+        alumno.save()
     }
 
     def cleanup() {
@@ -45,8 +55,10 @@ class AlumnoServiceSpec extends Specification {
 
     void "prueba"() {
         when:
-            def coso = service.planificarCursada(alumno, carrera)
+            //def coso = service.planificarCursada(alumno, carrera)
+            def coso = service.getMateriasAprobadas(alumno)//alumno.getMateriasAprobadas()
         then:
-            coso == [analisis1]
+            //alumno.notas.size() == 1
+            alumno.getMateriasAprobadas().size() == 2
     }
 }

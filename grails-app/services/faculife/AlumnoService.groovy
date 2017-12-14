@@ -13,4 +13,8 @@ class AlumnoService {
         // }
         return materiasAprobadas
     }
+
+    def getMateriasAprobadas(Alumno alumno){
+        return Nota.where { nota.alumno.id == alumno.id && nota >= 4 }.list()
+    }
 }

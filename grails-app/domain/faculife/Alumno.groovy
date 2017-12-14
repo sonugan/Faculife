@@ -17,10 +17,6 @@ class Alumno {
         padron required: true, nullable: false, blank: false
     }
 
-    def getMateriasAprobadas(){
-        return notas.find { it.nota >= 4 }?.materia
-    }
-    
     def inscribirseEnCarrera(carrera){
         if(carrera){
             def carreraYaInscripta = carreras.find { it.codigo == carrera.codigo }
@@ -64,7 +60,8 @@ class Alumno {
         return cursos
     }
 
-    def aprobarMateria(materia){
-        addToMateriasAprobadas(materia)
+    def aprobarMateria(materia, puntaje){
+        Nota nota = new Nota(materia: materia, nota: puntaje)
+        addToNotas(nota)
     }
 }
