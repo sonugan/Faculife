@@ -18,7 +18,7 @@ class Alumno {
     }
 
     def getMateriasAprobadas(){
-        return notas.find { it.nota >= 4 }
+        return notas.find { it.nota >= 4 }?.materia
     }
     
     def inscribirseEnCarrera(carrera){
