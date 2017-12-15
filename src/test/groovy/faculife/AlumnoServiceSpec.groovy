@@ -29,6 +29,7 @@ class AlumnoServiceSpec extends HibernateSpec {
 
         Curso algoritmos112017 = new Curso(cuatrimestre: cuatrimestre12017, materia: algoritmos1)
         algoritmos112017.save()
+<<<<<<< HEAD
 
         carrera = new Carrera(codigo: "9", nombre: "Sistemas")
         carrera.addToMaterias(analisis1)
@@ -57,6 +58,26 @@ class AlumnoServiceSpec extends HibernateSpec {
         alumno.addToNotas(nota2)
         alumno.addToNotas(nota3)
         alumno.addToNotas(nota4)
+=======
+
+        carrera = new Carrera(codigo: "9", nombre: "Sistemas")
+        carrera.addToMaterias(analisis1)
+        carrera.addToMaterias(algoritmos1)
+        carrera.save()
+
+        alumno = new Alumno(nombres: 'gaston'
+            , apellidos: 'Perez'
+            , numeroDocumento: '34114043'
+            , fechaNacimiento: new Date())
+
+        //alumno.aprobarMateria(algoritmos1, 5)
+        Nota nota = new Nota(materia: algoritmos1, nota: 4)
+        nota.save()
+        Nota nota1 = new Nota(materia: analisis1, nota: 5)
+        nota.save()
+        alumno.addToNotas(nota)
+        alumno.addToNotas(nota1)
+>>>>>>> 97860390898b264deb7ffd89225d925f98220816
         alumno.save()
     }
 
@@ -69,6 +90,10 @@ class AlumnoServiceSpec extends HibernateSpec {
             def coso = service.getMateriasAprobadas(alumno)//alumno.getMateriasAprobadas()
         then:
             //alumno.notas.size() == 1
+<<<<<<< HEAD
             coso.size() == 3
+=======
+            alumno.getMateriasAprobadas().size() == 2
+>>>>>>> 97860390898b264deb7ffd89225d925f98220816
     }
 }

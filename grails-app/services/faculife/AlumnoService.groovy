@@ -21,5 +21,6 @@ class AlumnoService {
 
       return alumno.notas.findAll{(it.nota >= 4)}
       //return query.list()
+
     }
 }
