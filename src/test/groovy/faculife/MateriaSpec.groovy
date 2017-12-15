@@ -14,6 +14,8 @@ class MateriaSpec extends Specification {
     Alumno gaston
     Curso analisis2_a
     Curso algebra2_b
+    Nota notaAlgebra
+    Nota notaAnalisis
 
     def setup() {
       gaston = new Alumno(
@@ -30,14 +32,17 @@ class MateriaSpec extends Specification {
       algebra2 = new Materia(codigo: "81.02", nombre: "Algebra II")
       proba = new Materia(codigo: "81.04", nombre: "Probabilidad y estadistica B")
       proba.save()
-      analisis2.save()
-      algebra2.save()
+      //analisis2.save()
+      //algebra2.save()
 
       analisis2_a = new Curso(cuatrimestre: primerCuatri2017, materia: analisis2)
       algebra2_b = new Curso(cuatrimestre: primerCuatri2017, materia: algebra2)
 
-      analisis2_a.save()
-      algebra2_b.save()
+      //analisis2_a.save()
+      //algebra2_b.save()
+
+      notaAlgebra = new Nota(nota: 7)
+      notaAnalisis = new Nota(nota: 8)
     }
 
     def cleanup() {
@@ -45,6 +50,9 @@ class MateriaSpec extends Specification {
 
     def 'el alumno puede cursar la materia porque aprobo las correlatividades' () {
       when:
+          analisis2.nota = notaAnalisis
+          algebra2.nota = notaAlgebra
+
           proba.addToCorrelativas(analisis2)
           proba.addToCorrelativas(algebra2)
 
@@ -53,8 +61,8 @@ class MateriaSpec extends Specification {
           gaston.addToCursos(algebra2_b)
 
           //agrego notas del alumno
-          gaston.addToNotas(new Nota(nota: 8, materia: analisis2))//analisis2
-          gaston.addToNotas(new Nota(nota: 7, materia: algebra2))//algebra2
+          gaston.addToNotas(notaAnalisis)//analisis2
+          gaston.addToNotas(notaAlgebra)//algebra2
           //como vinculo cada nota con la materia*/
 
       then:
