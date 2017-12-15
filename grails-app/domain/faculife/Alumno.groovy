@@ -18,16 +18,18 @@ class Alumno {
     }
 
     def getMateriasAprobadas(){
-        return notas.find { it.nota >= 4 }?.materia
+        //return notas.find { it.nota >= 4 }?.materia
+
+        return true
     }
-    
+
     def inscribirseEnCarrera(carrera){
         if(carrera){
             def carreraYaInscripta = carreras.find { it.codigo == carrera.codigo }
             if(carreraYaInscripta){
                 errors.rejectValue("carreras", "Solo puede inscribirse una vez a la carrera")
             }else{
-                addToCarreras(carrera)   
+                addToCarreras(carrera)
             }
         }else{
             errors.rejectValue("carreras", "La carrera a inscribirse no puede ser nula")
