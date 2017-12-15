@@ -17,15 +17,14 @@ class Alumno {
         padron required: true, nullable: false, blank: false
     }
 
-<<<<<<< HEAD
+
     def getMateriasAprobadas(){
         //return notas.find { it.nota >= 4 }?.materia
 
         return true
     }
 
-=======
->>>>>>> 97860390898b264deb7ffd89225d925f98220816
+
     def inscribirseEnCarrera(carrera){
         if(carrera){
             def carreraYaInscripta = carreras.find { it.codigo == carrera.codigo }
