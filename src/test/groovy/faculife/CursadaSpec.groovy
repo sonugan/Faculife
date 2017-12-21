@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(GrupoDeEstudios)
-class GrupoDeEstudiosSpec extends Specification {
+@TestFor(Cursada)
+class CursadaSpec extends Specification {
 
     def setup() {
     }
@@ -15,4 +15,8 @@ class GrupoDeEstudiosSpec extends Specification {
     def cleanup() {
     }
 
+    void "test something"() {
+        expect:"fix me"
+            true == true
+    }
 }

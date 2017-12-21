@@ -1,7 +1,6 @@
 package faculife
 
-class Coloquio {
-
+class Cursada {
     static constraints = {
     }
 }
