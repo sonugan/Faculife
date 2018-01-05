@@ -12,10 +12,10 @@ class AlumnoSpec extends HibernateSpec {
     Alumno gaston
     Carrera sistemas
     // Carrera sistemas
-    // Materia seminario1
-    // Materia algoritmos1
-    // Curso seminario12017
-    // Curso algoritmos12017
+    Materia seminario1
+    Materia algoritmos1
+    Curso seminario12017
+    Curso algoritmos12017
     def setup() {
         sistemas = new Carrera(codigo: "9", nombre: "Sistemas")
         sistemas.save()
@@ -26,20 +26,20 @@ class AlumnoSpec extends HibernateSpec {
             , apellidos: 'Perez'
             , numeroDocumento: '34114043'
             , fechaNacimiento: new Date())
-        // alumnoValido.save()
+        // gaston.save()
 
         // sistemas = new Carrera(codigo: "9", nombre: "Sistemas")
         // sistemas.save()
 
-        // Cuatrimestre primerCuatrimestre2017 = new Cuatrimestre(anio: 2017, numero: 1)
-        // primerCuatrimestre2017.save()
-        // seminario1 = new Materia(codigo: "7115", nombre: "Seminario 1")
-        // seminario12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: seminario1)
-        // seminario12017.save()
+        Cuatrimestre primerCuatrimestre2017 = new Cuatrimestre(anio: 2017, numero: 1)
+        primerCuatrimestre2017.save()
+        seminario1 = new Materia(codigo: "7115", nombre: "Seminario 1")
+        seminario12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: seminario1)
+        seminario12017.save()
 
-        // algoritmos1 = new Materia(codigo: "7101", nombre: "Algoritmos 1")
-        // algoritmos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: algoritmos1)
-        // algoritmos12017.save()
+        algoritmos1 = new Materia(codigo: "7101", nombre: "Algoritmos 1")
+        algoritmos12017 = new Curso(cuatrimestre: primerCuatrimestre2017, materia: algoritmos1)
+        algoritmos12017.save()
     }
 
     def cleanup() {
@@ -212,42 +212,80 @@ class AlumnoSpec extends HibernateSpec {
             gaston.carrera == null
     }
 
-    // def 'alumno se inscribe en un curso'() {
-    //     when:
-    //         alumnoValido.save()
-    //         alumnoValido.inscribirseEnCurso(seminario12017)
-    //     then:
-    //         !alumnoValido.hasErrors()
-    //         alumnoValido.getCursosQueEstoyCursando().size() == 1
-    // }
+    def 'alumno se inscribe en un curso'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(seminario12017)
+        then:
+            !gaston.hasErrors()
+            gaston.getCursosQueEstoyCursando().size() == 1
+    }
 
-    // def 'alumno se inscribe en dos cursos distintos'() {
-    //     when:
-    //         alumnoValido.save()
-    //         alumnoValido.inscribirseEnCurso(seminario12017)
-    //         alumnoValido.inscribirseEnCurso(algoritmos12017)
-    //     then:
-    //         !alumnoValido.hasErrors()
-    //         alumnoValido.getCursosQueEstoyCursando().size() == 2
-    // }
+    def 'alumno se inscribe en dos cursos distintos'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(seminario12017)
+            gaston.inscribirseEnCurso(algoritmos12017)
+        then:
+            !gaston.hasErrors()
+            gaston.getCursosQueEstoyCursando().size() == 2
+    }
 
-    // def 'alumno se inscribe en dos veces al mismo curso'() {
-    //     when:
-    //         alumnoValido.save()
-    //         alumnoValido.inscribirseEnCurso(seminario12017)
-    //         alumnoValido.inscribirseEnCurso(seminario12017)
-    //     then:
-    //         alumnoValido.hasErrors()
-    //         alumnoValido.getCursosQueEstoyCursando().size() == 1
-    //         alumnoValido.errors.getFieldErrors('cursos')
-    // }
+    def 'alumno se inscribe en dos veces al mismo curso'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(seminario12017)
+            gaston.inscribirseEnCurso(seminario12017)
+        then:
+            gaston.hasErrors()
+            gaston.getCursosQueEstoyCursando().size() == 1
+            gaston.errors.getFieldErrors('cursos')
+    }
 
-    // def 'alumno se inscribe en curso nulo'() {
-    //     when:
-    //         alumnoValido.save()
-    //         alumnoValido.inscribirseEnCurso(null)
-    //     then:
-    //         alumnoValido.hasErrors()
-    //         alumnoValido.errors.getFieldErrors('cursos')
-    // }
+    def 'alumno se inscribe en curso nulo'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(null)
+        then:
+            gaston.hasErrors()
+            gaston.errors.getFieldErrors('cursos')
+    }
+
+    def 'alumno aprueba materia'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(seminario12017)
+            gaston.aprobarMateria(seminario1)
+        then:
+            gaston.materiasAprobadas?.size() == 1
+    }
+
+    def 'alumno aprueba materia en la que no está inscripto'() {
+        when:
+            gaston.save()
+            gaston.aprobarMateria(seminario1)
+        then:
+            gaston.hasErrors()
+            gaston.errors.getFieldErrors('materiasAprobadas')
+    }
+
+    def 'alumno aprueba dos veces la misma materia'() {
+        when:
+            gaston.save()
+            gaston.inscribirseEnCurso(seminario12017)
+            gaston.aprobarMateria(seminario1)
+            gaston.aprobarMateria(seminario1)
+        then:
+            gaston.hasErrors()
+            gaston.errors.getFieldErrors('materiasAprobadas')
+    }
+
+    def 'alumno aprueba materia nula'() {
+        when:
+            gaston.save()
+            gaston.aprobarMateria(null)
+        then:
+            gaston.hasErrors()
+            gaston.errors.getFieldErrors('materiasAprobadas')
+    }
 }

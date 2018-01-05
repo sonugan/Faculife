@@ -1,6 +1,10 @@
 package faculife
 
-class Cursada {
+class Curso {
+
+    Materia materia
+
     static constraints = {
+      
     }
 }
